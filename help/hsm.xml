@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<HelpSetMaker>
+<DocumentProperties>
+<Value Key="project.charset">ISO-8859-1</Value>
+<Value Key="stml.charset">UTF-8</Value>
+</DocumentProperties>
+<DocumentTree>
+<DocumentNode>
+<Filename>6eaae8f0</Filename>
+<Title>Art by Amy Management System</Title>
+<FullTextSearch>true</FullTextSearch>
+</DocumentNode>
+</DocumentTree>
+<ImageLibrary>
+<Root>/home/sean/Pictures/Business/PekinSOFT_Systems/AbAMS</Root>
+<Image Name="AboutBox.png">
+<Foundry>/home/sean/Pictures/Business/PekinSOFT_Systems/AbAMS</Foundry>
+<Timestamp>1613747677000</Timestamp>
+<Width>462</Width>
+<Height>227</Height>
+<Width.INTERN>200</Width.INTERN>
+<Height.INTERN>98</Height.INTERN>
+</Image>
+<Image Name="NewProductMenu.png">
+<Foundry>/home/sean/Pictures/Business/PekinSOFT_Systems/AbAMS</Foundry>
+<Timestamp>1613745560000</Timestamp>
+<Width>377</Width>
+<Height>212</Height>
+<Width.INTERN>200</Width.INTERN>
+<Height.INTERN>112</Height.INTERN>
+</Image>
+<Image Name="ProductEntryWindow-ProductID.png">
+<Foundry>/home/sean/Pictures/Business/PekinSOFT_Systems/AbAMS</Foundry>
+<Timestamp>1613747114000</Timestamp>
+<Width>447</Width>
+<Height>197</Height>
+</Image>
+<Image Name="ProductEntryWindow-UnitPrice.png">
+<Foundry>/home/sean/Pictures/Business/PekinSOFT_Systems/AbAMS</Foundry>
+<Timestamp>1613747376000</Timestamp>
+<Width>567</Width>
+<Height>196</Height>
+</Image>
+<Image Name="ProductEntryWindow-UnitPriceField.png">
+<Foundry>/home/sean/Pictures/Business/PekinSOFT_Systems/AbAMS</Foundry>
+<Timestamp>1613748705000</Timestamp>
+<Width>289</Width>
+<Height>115</Height>
+<Width.INTERN>200</Width.INTERN>
+<Height.INTERN>79</Height.INTERN>
+</Image>
+<Image Name="ProductEntryWindow.png">
+<Foundry>/home/sean/Pictures/Business/PekinSOFT_Systems/AbAMS</Foundry>
+<Timestamp>1613746261000</Timestamp>
+<Width>711</Width>
+<Height>343</Height>
+</Image>
+<ThumbName Image="AboutBox.png">79885129</ThumbName>
+<ThumbName Image="NewProductMenu.png">db8baffe</ThumbName>
+<ThumbName Image="ProductEntryWindow-ProductID.png">a81a6f07</ThumbName>
+<ThumbName Image="ProductEntryWindow-UnitPrice.png">f7bc8c70</ThumbName>
+<ThumbName Image="ProductEntryWindow-UnitPriceField.png">c908cfae</ThumbName>
+<ThumbName Image="ProductEntryWindow.png">f3dd6767</ThumbName>
+<ThumbnailSize>100</ThumbnailSize>
+</ImageLibrary>
+</HelpSetMaker>
