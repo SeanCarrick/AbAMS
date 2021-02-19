@@ -38,6 +38,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,6 +62,7 @@ public abstract class ModelDAO<T> implements Editable {
     
     public ModelDAO() {
         this.pcs = new PropertyChangeSupport(this);
+        this.records = new ArrayList<>();
         this.idx = 0;
     }
 
