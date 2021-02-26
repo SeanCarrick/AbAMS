@@ -15,6 +15,8 @@ import org.jdesktop.application.SingleFrameApplication;
  */
 public class ProductEntry extends javax.swing.JInternalFrame {
 
+    private static final long serialVersionUID = 5380954941909220725L;
+
     private final SingleFrameApplication app;
     private boolean saveAllowed;
     
@@ -28,6 +30,7 @@ public class ProductEntry extends javax.swing.JInternalFrame {
         
         initComponents();
         
+        getRootPane().setDefaultButton(saveButton);
     }
 
     /**
@@ -81,6 +84,11 @@ public class ProductEntry extends javax.swing.JInternalFrame {
                 productIdFieldFocusGained(evt);
             }
         });
+        productIdField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                checkEscape(evt);
+            }
+        });
 
         productNameLabel.setDisplayedMnemonic(java.util.ResourceBundle.getBundle("com/pekinsoft/abams/desktop/resources/ProductEntry").getString("productLabel.mnemonic").charAt(0));
         productNameLabel.setLabelFor(productNameField);
@@ -94,6 +102,11 @@ public class ProductEntry extends javax.swing.JInternalFrame {
                 productNameFieldFocusGained(evt);
             }
         });
+        productNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                checkEscape(evt);
+            }
+        });
 
         unitPriceField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         unitPriceField.setText(bundle.getString("unitPriceField.text")); // NOI18N
@@ -101,6 +114,11 @@ public class ProductEntry extends javax.swing.JInternalFrame {
         unitPriceField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 unitPriceFieldFocusGained(evt);
+            }
+        });
+        unitPriceField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                checkEscape(evt);
             }
         });
 
@@ -127,6 +145,11 @@ public class ProductEntry extends javax.swing.JInternalFrame {
                 descriptionFieldFocusGained(evt);
             }
         });
+        descriptionField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                checkEscape(evt);
+            }
+        });
         jScrollPane1.setViewportView(descriptionField);
 
         dimensionsLabel.setDisplayedMnemonic(java.util.ResourceBundle.getBundle("com/pekinsoft/abams/desktop/resources/ProductEntry").getString("dimensionsLabel.mnemonic").charAt(0));
@@ -141,6 +164,11 @@ public class ProductEntry extends javax.swing.JInternalFrame {
                 dimensionsFieldFocusGained(evt);
             }
         });
+        dimensionsField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                checkEscape(evt);
+            }
+        });
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(com.pekinsoft.abams.AbAMSApp.class).getContext().getActionMap(ProductEntry.class, this);
         cancelButton.setAction(actionMap.get("doCancel")); // NOI18N
@@ -151,6 +179,11 @@ public class ProductEntry extends javax.swing.JInternalFrame {
         cancelButton.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 cancelButtonFocusGained(evt);
+            }
+        });
+        cancelButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                checkEscape(evt);
             }
         });
 
@@ -164,13 +197,21 @@ public class ProductEntry extends javax.swing.JInternalFrame {
                 saveButtonFocusGained(evt);
             }
         });
+        saveButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                checkEscape(evt);
+            }
+        });
 
         helpLabel.setBackground(resourceMap.getColor("helpLabel.background")); // NOI18N
         helpLabel.setForeground(resourceMap.getColor("helpLabel.foreground")); // NOI18N
         helpLabel.setText(resourceMap.getString("helpLabel.text")); // NOI18N
         helpLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        helpLabel.setMaximumSize(new java.awt.Dimension(369, 117));
+        helpLabel.setMinimumSize(new java.awt.Dimension(369, 117));
         helpLabel.setName("helpLabel"); // NOI18N
         helpLabel.setOpaque(true);
+        helpLabel.setPreferredSize(new java.awt.Dimension(369, 117));
 
         picturePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("picturePanel.border.title"))); // NOI18N
         picturePanel.setName("picturePanel"); // NOI18N
@@ -191,6 +232,11 @@ public class ProductEntry extends javax.swing.JInternalFrame {
         pictureButton.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 pictureButtonFocusGained(evt);
+            }
+        });
+        pictureButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                checkEscape(evt);
             }
         });
 
@@ -240,14 +286,13 @@ public class ProductEntry extends javax.swing.JInternalFrame {
                     .addComponent(helpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(picturePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(picturePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(saveButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelButton)
-                        .addGap(11, 11, 11))))
+                        .addComponent(cancelButton)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,7 +304,7 @@ public class ProductEntry extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cancelButton)
                             .addComponent(saveButton)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(productIdLabel)
@@ -278,9 +323,9 @@ public class ProductEntry extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dimensionsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dimensionsLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(helpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -288,44 +333,48 @@ public class ProductEntry extends javax.swing.JInternalFrame {
 
     private void unitPriceFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_unitPriceFieldFocusGained
         unitPriceField.selectAll();
-        JOptionPane.showInternalMessageDialog(this, app.getContext().getResourceMap().getString("unitPriceField.help"));
-        helpLabel.setText(app.getContext().getResourceMap().getString("unitPriceLabel.help"));
+        helpLabel.setText(app.getContext().getResourceMap(this.getClass()).getString("unitPriceField.help"));
     }//GEN-LAST:event_unitPriceFieldFocusGained
 
     private void productIdFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_productIdFieldFocusGained
-        helpLabel.setText(app.getContext().getResourceMap().getString("productIdField.help"));
+        helpLabel.setText(app.getContext().getResourceMap(this.getClass()).getString("productIdField.help"));
     }//GEN-LAST:event_productIdFieldFocusGained
 
     private void productNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_productNameFieldFocusGained
         productNameField.selectAll();
-        helpLabel.setText(app.getContext().getResourceMap().getString("productNameField.help"));
+        helpLabel.setText(app.getContext().getResourceMap(this.getClass()).getString("productNameField.help"));
     }//GEN-LAST:event_productNameFieldFocusGained
 
     private void descriptionFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descriptionFieldFocusGained
         descriptionField.selectAll();
-        helpLabel.setText(app.getContext().getResourceMap().getString("descriptionField.help"));
+        helpLabel.setText(app.getContext().getResourceMap(this.getClass()).getString("descriptionField.help"));
     }//GEN-LAST:event_descriptionFieldFocusGained
 
     private void dimensionsFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dimensionsFieldFocusGained
         dimensionsField.selectAll();
-        helpLabel.setText(app.getContext().getResourceMap().getString("dimensionsField.help"));
+        helpLabel.setText(app.getContext().getResourceMap(this.getClass()).getString("dimensionsField.help"));
     }//GEN-LAST:event_dimensionsFieldFocusGained
 
     private void pictureButtonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pictureButtonFocusGained
-        helpLabel.setText(app.getContext().getResourceMap().getString("pictureButton.help"));
+        helpLabel.setText(app.getContext().getResourceMap(this.getClass()).getString("pictureButton.help"));
     }//GEN-LAST:event_pictureButtonFocusGained
 
     private void saveButtonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_saveButtonFocusGained
-        helpLabel.setText(app.getContext().getResourceMap().getString("saveButton.help"));
+        helpLabel.setText(app.getContext().getResourceMap(this.getClass()).getString("saveButton.help"));
     }//GEN-LAST:event_saveButtonFocusGained
 
     private void cancelButtonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cancelButtonFocusGained
-        helpLabel.setText(app.getContext().getResourceMap().getString("cancelButton.help"));
+        helpLabel.setText(app.getContext().getResourceMap(this.getClass()).getString("cancelButton.help"));
     }//GEN-LAST:event_cancelButtonFocusGained
+
+    private void checkEscape(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_checkEscape
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ESCAPE) {
+            doCancel();
+        }
+    }//GEN-LAST:event_checkEscape
 
     @Action
     public void doCancel() {
-        JOptionPane.showInternalMessageDialog(this, " width = " + getSize().width + "\nheight = " + getSize().height, "imageLabel Dimensions", JOptionPane.INFORMATION_MESSAGE);
         dispose();
     }
 
@@ -336,6 +385,7 @@ public class ProductEntry extends javax.swing.JInternalFrame {
     public boolean isSaveAllowed() {
         return !unitPriceField.getText().equals("0.00") 
                 && unitPriceField.getText().length() > 0
+                && unitPriceField.getText().contains(".")
                 && !productNameField.getText().equals("[Product Name]")
                 && productNameField.getText().length() > 0
                 && !descriptionField.getText().equals("[Enter detailed product description]")
