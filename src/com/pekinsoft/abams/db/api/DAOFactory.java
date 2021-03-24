@@ -32,9 +32,10 @@
  */
 package com.pekinsoft.abams.db.api;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import com.pekinsoft.abams.AbAMSApp;
+import com.pekinsoft.abams.utils.Logger;
 import java.sql.SQLException;
+import org.jdesktop.application.Application;
 
 /**
  * {@code DAOFactory} is a factory class for getting DAO factories for specific
@@ -75,405 +76,60 @@ import java.sql.SQLException;
  */
 public abstract class DAOFactory {
 
-    public static final int DERBY_EMBEDDED = 1;
-    public static final int DERBY_SERVER = 2;
-    public static final int MYSQL_SERVER = 3;
-    public static final int MARIADB_SERVER = 4;
-    public static final int ORACLEDB_SERVER = 5;
-    public static final int MS_SQL_SERVER = 6;
-    public static final int POSTGRES_SQL = 7;
-    public static final int SQLITE = 8;
+    public static final int ADDRESSES_DAO = 1;
+    public static final int CUSTOMERS_DAO = 2;
+    public static final int ORDER_DETAILS_DAO = 3;
+    public static final int ORDERS_DAO = 4;
+    public static final int PRODUCTS_DAO = 5;
+    
+    private static final String CLASS_NAME = DAOFactory.class.getSimpleName();
+    
+    private static final Application app = AbAMSApp.getInstance(AbAMSApp.class);
+    private static final Logger log = Logger.getLogger(
+            DAOFactory.class.getSimpleName(), app);
 
     private DAOFactory() throws SQLException {
         // Preventing initialization.
     }
     
-//    public abstract Connection getConnection() throws SQLException;
-
-    public abstract AddressesDAO getAddressesDAO() throws SQLException;
-
-    public abstract CustomersDAO getCustomersDAO() throws SQLException;
-
-    public abstract OrderDetailsDAO getOrderDetailsDAO() throws SQLException;
-
-    public abstract OrdersDAO getOrdersDAO() throws SQLException;
-
-    public abstract ProductsDAO getProductsDAO() throws SQLException;
-
-    public static DAOFactory getDAOFactory(int whichFactory) throws SQLException {
-        switch (whichFactory) {
-            case DERBY_EMBEDDED:
-                return new DerbyEmbeddedDAOFactory();
-            case DERBY_SERVER:
-                return new DerbyServerDAOFactory();
-            case MYSQL_SERVER:
-                return new MySQLServerDAOFactory();
-            case MARIADB_SERVER:
-                return new MariaDBServerDAOFactory();
-            case ORACLEDB_SERVER:
-                return new OracleDBServerDAOFactory();
-            case MS_SQL_SERVER:
-                return new MicrosoftSQLDAOFactory();
-            case POSTGRES_SQL:
-                return new PostGreSQLDAOFactory();
-            case SQLITE:
-                return new SQLiteDAOFactory();
+    public static AbstractDAO getDAO(int whichDAO, boolean batchProcessing) {
+        log.enter(CLASS_NAME, "getDAO", whichDAO);
+        
+        AbstractDAO dao = null;
+        
+        log.debug("Executing switch block to see which DAO to return");
+        switch (whichDAO) {
+            case ADDRESSES_DAO:
+                log.debug("ADDRESSES_DAO requested. Returning a new AddressesDAO.");
+                dao = new AddressesDAO(batchProcessing, app);
+                log.exit(CLASS_NAME, "getDAO", dao);
+                return dao;
+            case CUSTOMERS_DAO:
+                log.debug("CUSTOMERS_DAO requested. Returning a new CustomersDAO.");
+                dao = new CustomersDAO(batchProcessing, app);
+                log.exit(CLASS_NAME, "getDAO", dao);
+                return new CustomersDAO(batchProcessing, app);
+            case ORDER_DETAILS_DAO:
+                log.debug("ORDER_DETAILS_DAO requested. Returning a new OrderDetailsDAO.");
+                dao = new OrderDetailsDAO(batchProcessing, app);
+                log.exit(CLASS_NAME, "getDAO", dao);
+                return new OrderDetailsDAO(batchProcessing, app);
+            case ORDERS_DAO:
+                log.debug("ORDERS_DAO requested. Returning a new OrdersDAO.");
+                dao = new OrdersDAO(batchProcessing, app);
+                log.exit(CLASS_NAME, "getDAO", dao);
+                return new OrdersDAO(batchProcessing, app);
+            case PRODUCTS_DAO:
+                log.debug("PRODUCTS_DAO requested. Returning a new ProductsDAO.");
+                dao = new ProductsDAO(batchProcessing, app);
+                log.exit(CLASS_NAME, "getDAO", dao);
+                return new ProductsDAO(batchProcessing, app);
             default:
-                return null;
+                log.debug("Invalid DAO requested: whichDAO == " + whichDAO + ".\n\n"
+                        + "Returning a null DAO object.");
+                log.exit(CLASS_NAME, "getDAO", dao);
+                return dao;
         }
-    }
-
-    public static class DerbyEmbeddedDAOFactory extends DAOFactory {
-
-        private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-        private static final String URL = "jdbc:derby:nwinddb;create=true;";
-        
-        private DerbyEmbeddedDAOFactory() throws SQLException {
-            
-        }
-        
-        public static Connection getConnection() throws SQLException {
-            return DriverManager.getConnection(URL + "user=app;password=app;");
-        }
-
-        @Override
-        public AddressesDAO getAddressesDAO() throws SQLException {
-            // TODO: Implement functionality in DerbyEmbeddedDAOFactory.getAddressesDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public CustomersDAO getCustomersDAO() throws SQLException {
-            // TODO: Implement functionality in DerbyEmbeddedDAOFactory.getCustomersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrderDetailsDAO getOrderDetailsDAO() throws SQLException {
-            // TODO: Implement functionality in DerbyEmbeddedDAOFactory.getOrderDetailsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrdersDAO getOrdersDAO() throws SQLException {
-            // TODO: Implement functionality in DerbyEmbeddedDAOFactory.getOrdersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public ProductsDAO getProductsDAO() throws SQLException {
-            // TODO: Implement functionality in DerbyEmbeddedDAOFactory.getProductsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-    }
-
-    public static class DerbyServerDAOFactory extends DAOFactory {
-
-        private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-        private static final String URL = "jdbc:derby://localhost:1527/nwind";
-
-        public DerbyServerDAOFactory() throws SQLException {
-        }
-        
-        public static Connection getConnection() throws SQLException {
-            return DriverManager.getConnection(URL + "user=app;password=app"); 
-        }
-
-        @Override
-        public AddressesDAO getAddressesDAO() throws SQLException {
-            // TODO: Implement functionality in DerbyServerDAOFactory.getAddressesDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public CustomersDAO getCustomersDAO() throws SQLException {
-            // TODO: Implement functionality in DerbyServerDAOFactory.getCustomersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrderDetailsDAO getOrderDetailsDAO() throws SQLException {
-            // TODO: Implement functionality in DerbyServerDAOFactory.getOrderDetailsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrdersDAO getOrdersDAO() throws SQLException {
-            // TODO: Implement functionality in DerbyServerDAOFactory.getOrdersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public ProductsDAO getProductsDAO() throws SQLException {
-            // TODO: Implement functionality in DerbyServerDAOFactory.getProductsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
- 
-    }
-
-    public static class MySQLServerDAOFactory extends DAOFactory {
-
-        private static final String DRIVER = "org.mysql.cj.jdbc.Driver";
-        private static final String URL = "mysql://localhost:3306/dbName";
-
-        public MySQLServerDAOFactory() throws SQLException {
-        }
-        
-        public static Connection getConnection() {
-            // TODO: return a Connection object.
-            return null;
-        }
-
-        @Override
-        public AddressesDAO getAddressesDAO() throws SQLException {
-            // TODO: Implement functionality in MySQLServerDAOFactory.getAddressesDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public CustomersDAO getCustomersDAO() throws SQLException {
-            // TODO: Implement functionality in MySQLServerDAOFactory.getCustomersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrderDetailsDAO getOrderDetailsDAO() throws SQLException {
-            // TODO: Implement functionality in MySQLServerDAOFactory.getOrderDetailsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrdersDAO getOrdersDAO() throws SQLException {
-            // TODO: Implement functionality in MySQLServerDAOFactory.getOrdersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public ProductsDAO getProductsDAO() throws SQLException {
-            // TODO: Implement functionality in MySQLServerDAOFactory.getProductsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-    }
-
-    public static class MariaDBServerDAOFactory extends DAOFactory {
-
-        private static final String DRIVER = "org.mariadb.jdbc.Driver";
-        private static final String URL = "jdbc:mariadb://50.77.187.10:3306/abams"
-                + "?user=sean&password=592*-:1534n";
-
-        public MariaDBServerDAOFactory() throws SQLException {
-        }
-
-        public static Connection getConnection() throws SQLException {
-            return DriverManager.getConnection(URL);
-        }
-        
-        public static Connection getConnection(String host, String uname, 
-                char[] pword, String dbName) throws SQLException {
-            if (host == null || host.isEmpty()) {
-                host = "localhost";
-            }
-            if (dbName == null || dbName.isEmpty()) {
-                throw new IllegalArgumentException("null dbName");
-            }
-            
-            String url = "jdbc:mariadb://" + host + ":3306/";
-            
-            if (uname != null && !uname.isEmpty()) {
-                url += "?user=" + uname;
-            }
-            
-            if (pword != null && pword.length > 0) {
-                url += "&password=";
-                
-                for (int x = 0; x < pword.length; x++) {
-                    url += pword[x];
-                }
-            }
-            
-            return DriverManager.getConnection(url);
-        }
-
-        @Override
-        public AddressesDAO getAddressesDAO() throws SQLException {
-            // TODO: Implement functionality in MariaDBServerDAOFactory.getAddressesDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public CustomersDAO getCustomersDAO() throws SQLException {
-            // TODO: Implement functionality in MariaDBServerDAOFactory.getCustomersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrderDetailsDAO getOrderDetailsDAO() throws SQLException {
-            // TODO: Implement functionality in MariaDBServerDAOFactory.getOrderDetailsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrdersDAO getOrdersDAO() throws SQLException {
-            // TODO: Implement functionality in MariaDBServerDAOFactory.getOrdersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public ProductsDAO getProductsDAO() throws SQLException {
-            // TODO: Implement functionality in MariaDBServerDAOFactory.getProductsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-    }
-
-    public static class OracleDBServerDAOFactory extends DAOFactory {
-
-        public OracleDBServerDAOFactory() throws SQLException {
-        }
-
-        @Override
-        public AddressesDAO getAddressesDAO() throws SQLException {
-            // TODO: Implement functionality in OracleDBServerDAOFactory.getAddressesDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public CustomersDAO getCustomersDAO() throws SQLException {
-            // TODO: Implement functionality in OracleDBServerDAOFactory.getCustomersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrderDetailsDAO getOrderDetailsDAO() throws SQLException {
-            // TODO: Implement functionality in OracleDBServerDAOFactory.getOrderDetailsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrdersDAO getOrdersDAO() throws SQLException {
-            // TODO: Implement functionality in OracleDBServerDAOFactory.getOrdersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public ProductsDAO getProductsDAO() throws SQLException {
-            // TODO: Implement functionality in OracleDBServerDAOFactory.getProductsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-    }
-
-    public static class MicrosoftSQLDAOFactory extends DAOFactory {
-
-        public MicrosoftSQLDAOFactory() throws SQLException {
-        }
-
-        @Override
-        public AddressesDAO getAddressesDAO() throws SQLException {
-            // TODO: Implement functionality in MicrosoftSQLDAOFactory.getAddressesDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public CustomersDAO getCustomersDAO() throws SQLException {
-            // TODO: Implement functionality in MicrosoftSQLDAOFactory.getCustomersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrderDetailsDAO getOrderDetailsDAO() throws SQLException {
-            // TODO: Implement functionality in MicrosoftSQLDAOFactory.getOrderDetailsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrdersDAO getOrdersDAO() throws SQLException {
-            // TODO: Implement functionality in MicrosoftSQLDAOFactory.getOrdersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public ProductsDAO getProductsDAO() throws SQLException {
-            // TODO: Implement functionality in MicrosoftSQLDAOFactory.getProductsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-    }
-
-    public static class PostGreSQLDAOFactory extends DAOFactory {
-
-        public PostGreSQLDAOFactory() throws SQLException {
-        }
-
-        @Override
-        public AddressesDAO getAddressesDAO() throws SQLException {
-            // TODO: Implement functionality in PostGreSQLDAOFactory.getAddressesDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public CustomersDAO getCustomersDAO() throws SQLException {
-            // TODO: Implement functionality in PostGreSQLDAOFactory.getCustomersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrderDetailsDAO getOrderDetailsDAO() throws SQLException {
-            // TODO: Implement functionality in PostGreSQLDAOFactory.getOrderDetailsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrdersDAO getOrdersDAO() throws SQLException {
-            // TODO: Implement functionality in PostGreSQLDAOFactory.getOrdersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public ProductsDAO getProductsDAO() throws SQLException {
-            // TODO: Implement functionality in PostGreSQLDAOFactory.getProductsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-    }
-
-    public static class SQLiteDAOFactory extends DAOFactory {
-
-        public SQLiteDAOFactory() throws SQLException {
-        }
-
-        @Override
-        public AddressesDAO getAddressesDAO() throws SQLException {
-            // TODO: Implement functionality in SQLiteDAOFactory.getAddressesDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public CustomersDAO getCustomersDAO() throws SQLException {
-            // TODO: Implement functionality in SQLiteDAOFactory.getCustomersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrderDetailsDAO getOrderDetailsDAO() throws SQLException {
-            // TODO: Implement functionality in SQLiteDAOFactory.getOrderDetailsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public OrdersDAO getOrdersDAO() throws SQLException {
-            // TODO: Implement functionality in SQLiteDAOFactory.getOrdersDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public ProductsDAO getProductsDAO() throws SQLException {
-            // TODO: Implement functionality in SQLiteDAOFactory.getProductsDAO.
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
     }
 
 }

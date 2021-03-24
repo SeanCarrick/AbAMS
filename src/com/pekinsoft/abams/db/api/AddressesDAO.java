@@ -7,7 +7,8 @@ package com.pekinsoft.abams.db.api;
 
 import com.pekinsoft.abams.db.Addresses;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
+import org.jdesktop.application.Application;
 
 /**
  *
@@ -16,21 +17,27 @@ import java.util.List;
  * @version 0.1.0
  * @since 0.1.0
  */
-public class AddressesDAO extends ModelDAO<Addresses> implements Editable {
+public class AddressesDAO extends AbstractDAO<Addresses> {
 
-    public AddressesDAO () {
-
+    public AddressesDAO (boolean batchProcessing, Application app) {
+        super(batchProcessing, app);
     }
 
     @Override
-    boolean insertRecord(Addresses record) throws SQLException {
-        // TODO: Implement functionality in AddressesDAO.insertRecord.
+    public int processBatch() throws SQLException {
+        // TODO: Implement functionality in AddressesDAO.processBatch.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    boolean updateRecord(Addresses record) throws SQLException {
-        // TODO: Implement functionality in AddressesDAO.updateRecord.
+    public boolean insert(Addresses record) throws SQLException {
+        // TODO: Implement functionality in AddressesDAO.insert.
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean update(Addresses record) throws SQLException {
+        // TODO: Implement functionality in AddressesDAO.update.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -41,8 +48,8 @@ public class AddressesDAO extends ModelDAO<Addresses> implements Editable {
     }
 
     @Override
-    public boolean delete() throws SQLException {
-        // TODO: Implement functionality in AddressesDAO.delete.
+    public int save(ArrayList<Addresses> records) throws SQLException {
+        // TODO: Implement functionality in AddressesDAO.save.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -53,62 +60,56 @@ public class AddressesDAO extends ModelDAO<Addresses> implements Editable {
     }
 
     @Override
-    public int delete(List<Addresses> records) throws SQLException {
+    public int delete(ArrayList<Addresses> records) throws SQLException {
         // TODO: Implement functionality in AddressesDAO.delete.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public boolean exists(Addresses record) throws SQLException {
-        // TODO: Implement functionality in AddressesDAO.exists.
+    public void selectAll() throws SQLException {
+        // TODO: Implement functionality in AddressesDAO.selectAll.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Addresses find(int searchColumn, String searchValue) throws SQLException {
+    public Addresses find(String field, String value) throws SQLException {
         // TODO: Implement functionality in AddressesDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Addresses find(int searchColumn, int searchValue) throws SQLException {
+    public Addresses find(String field, Integer value) throws SQLException {
         // TODO: Implement functionality in AddressesDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Addresses findIgnoreCase(int searchColumn, String searchValue) throws SQLException {
-        // TODO: Implement functionality in AddressesDAO.findIgnoreCase.
+    public Addresses find(String field, Short value) throws SQLException {
+        // TODO: Implement functionality in AddressesDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<Addresses> findLike(int searchColumn, String searchValue) throws SQLException {
-        // TODO: Implement functionality in AddressesDAO.findLike.
+    public Addresses find(String field, Long value) throws SQLException {
+        // TODO: Implement functionality in AddressesDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Addresses get() {
-        // TODO: Implement functionality in AddressesDAO.get.
+    public Addresses find(String field, Float value) throws SQLException {
+        // TODO: Implement functionality in AddressesDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Addresses get(int id) throws SQLException {
-        // TODO: Implement functionality in AddressesDAO.get.
+    public Addresses find(String field, Double value) throws SQLException {
+        // TODO: Implement functionality in AddressesDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<Addresses> getAll() throws SQLException {
-        // TODO: Implement functionality in AddressesDAO.getAll.
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public int getRecordCount() {
-        // TODO: Implement functionality in AddressesDAO.getRecordCount.
+    public Addresses find(String field, Boolean value) throws SQLException {
+        // TODO: Implement functionality in AddressesDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

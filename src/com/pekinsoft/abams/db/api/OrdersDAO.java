@@ -7,7 +7,8 @@ package com.pekinsoft.abams.db.api;
 
 import com.pekinsoft.abams.db.Orders;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
+import org.jdesktop.application.Application;
 
 /**
  *
@@ -16,21 +17,27 @@ import java.util.List;
  * @version 0.1.0
  * @since 0.1.0
  */
-public class OrdersDAO extends ModelDAO<Orders> implements Editable {
+public class OrdersDAO extends AbstractDAO<Orders> {
 
-    public OrdersDAO () {
-
+    public OrdersDAO (boolean batchProcessing, Application app) {
+        super(batchProcessing, app);
     }
 
     @Override
-    boolean insertRecord(Orders record) throws SQLException {
-        // TODO: Implement functionality in OrdersDAO.insertRecord.
+    public int processBatch() throws SQLException {
+        // TODO: Implement functionality in OrdersDAO.processBatch.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    boolean updateRecord(Orders record) throws SQLException {
-        // TODO: Implement functionality in OrdersDAO.updateRecord.
+    public boolean insert(Orders record) throws SQLException {
+        // TODO: Implement functionality in OrdersDAO.insert.
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean update(Orders record) throws SQLException {
+        // TODO: Implement functionality in OrdersDAO.update.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -41,8 +48,8 @@ public class OrdersDAO extends ModelDAO<Orders> implements Editable {
     }
 
     @Override
-    public boolean delete() throws SQLException {
-        // TODO: Implement functionality in OrdersDAO.delete.
+    public int save(ArrayList<Orders> records) throws SQLException {
+        // TODO: Implement functionality in OrdersDAO.save.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -53,62 +60,56 @@ public class OrdersDAO extends ModelDAO<Orders> implements Editable {
     }
 
     @Override
-    public int delete(List<Orders> records) throws SQLException {
+    public int delete(ArrayList<Orders> records) throws SQLException {
         // TODO: Implement functionality in OrdersDAO.delete.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public boolean exists(Orders record) throws SQLException {
-        // TODO: Implement functionality in OrdersDAO.exists.
+    public void selectAll() throws SQLException {
+        // TODO: Implement functionality in OrdersDAO.selectAll.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Orders find(int searchColumn, String searchValue) throws SQLException {
+    public Orders find(String field, String value) throws SQLException {
         // TODO: Implement functionality in OrdersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Orders find(int searchColumn, int searchValue) throws SQLException {
+    public Orders find(String field, Integer value) throws SQLException {
         // TODO: Implement functionality in OrdersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Orders findIgnoreCase(int searchColumn, String searchValue) throws SQLException {
-        // TODO: Implement functionality in OrdersDAO.findIgnoreCase.
+    public Orders find(String field, Short value) throws SQLException {
+        // TODO: Implement functionality in OrdersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<Orders> findLike(int searchColumn, String searchValue) throws SQLException {
-        // TODO: Implement functionality in OrdersDAO.findLike.
+    public Orders find(String field, Long value) throws SQLException {
+        // TODO: Implement functionality in OrdersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Orders get() {
-        // TODO: Implement functionality in OrdersDAO.get.
+    public Orders find(String field, Float value) throws SQLException {
+        // TODO: Implement functionality in OrdersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Orders get(int id) throws SQLException {
-        // TODO: Implement functionality in OrdersDAO.get.
+    public Orders find(String field, Double value) throws SQLException {
+        // TODO: Implement functionality in OrdersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<Orders> getAll() throws SQLException {
-        // TODO: Implement functionality in OrdersDAO.getAll.
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public int getRecordCount() {
-        // TODO: Implement functionality in OrdersDAO.getRecordCount.
+    public Orders find(String field, Boolean value) throws SQLException {
+        // TODO: Implement functionality in OrdersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

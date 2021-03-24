@@ -1,0 +1,83 @@
+.toc {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 1px;
+	padding-right: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	background-color: #FFF8DC;
+	color:#DEB887;
+}
+
+.doc {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 1px;
+	padding-right: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	background-color: #FFF8DC;
+	color:#00008B;
+}
+
+.title {
+	padding: 2px;   
+	background-color: #DEB887;   
+	color: #00008B;   
+	text-align: 
+	center; 
+}
+	
+.example {   
+	margin-left: 10px;   
+	margin-right: 10px;   
+	margin-top: 10px;   
+	margin-bottom: 10px;   
+	padding-left: 10px;   
+	padding-right: 10px;   
+	padding-bottom: 10px;   
+	background-color: #dddddd;   c
+	olor: black; 
+}
+
+.warn {   
+	margin-left: 10px;   
+	margin-right: 10px;   
+	margin-top: 10px;   
+	margin-bottom: 10px;   
+	padding-left: 10px;   
+	padding-right: 10px;   
+	padding-bottom: 10px;   
+	background-color: #ff6666;   
+	color: black; 
+}
+
+.note {   
+	margin-left: 10px;   
+	margin-right: 10px;   
+	margin-top: 10px;   
+	margin-bottom: 10px;   
+	padding-left: 10px;   
+	padding-right: 10px;   
+	padding-bottom: 10px;   
+	background-color: #bbbbee;   
+	color: black; 
+}
+
+h1 {   
+	padding: 2px;   
+	background-color: #DEB887;   
+	color: black;   
+	text-align: center; 
+}
+
+h2 {   
+	margin-top: 15px;   
+	padding: 2px;   
+	background-color: #ccffcc;   
+	color: black; 
+}

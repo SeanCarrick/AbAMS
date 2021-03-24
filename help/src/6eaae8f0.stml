@@ -5,6 +5,8 @@ The Art by Amy Management System is a simple application for Amy to use to manag
 
 This Help System is here to answer questions that you may have about using this application. There are a number of detailed pages about the various windows and dialogs that will be encountered while using Art by Amy Management System. Most of these pages also contain images to aide in understanding the topic disucussed.
 
+:h1 Examples
+
 As an example, when viewing the topic about adding a new product to the database, the topic mentions clicking on the File menu, then the New... menu, then the Product menu item. The picture that accompanies this topic looks as follows:
 
 :image NewProductMenu.png|New Product Menu|productMenu

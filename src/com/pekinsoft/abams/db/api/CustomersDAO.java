@@ -34,7 +34,8 @@ package com.pekinsoft.abams.db.api;
 
 import com.pekinsoft.abams.db.Customers;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
+import org.jdesktop.application.Application;
 
 /**
  *
@@ -43,21 +44,27 @@ import java.util.List;
  * @version 0.1.0
  * @since 0.1.0
  */
-public class CustomersDAO extends ModelDAO<Customers> implements Editable {
+public class CustomersDAO extends AbstractDAO<Customers> {
 
-    public CustomersDAO () {
-
+    public CustomersDAO (boolean batchProcessing, Application app) {
+        super(batchProcessing, app);
     }
 
     @Override
-    boolean insertRecord(Customers record) throws SQLException {
-        // TODO: Implement functionality in CustomersDAO.insertRecord.
+    public int processBatch() throws SQLException {
+        // TODO: Implement functionality in CustomersDAO.processBatch.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    boolean updateRecord(Customers record) throws SQLException {
-        // TODO: Implement functionality in CustomersDAO.updateRecord.
+    public boolean insert(Customers record) throws SQLException {
+        // TODO: Implement functionality in CustomersDAO.insert.
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean update(Customers record) throws SQLException {
+        // TODO: Implement functionality in CustomersDAO.update.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -68,8 +75,8 @@ public class CustomersDAO extends ModelDAO<Customers> implements Editable {
     }
 
     @Override
-    public boolean delete() throws SQLException {
-        // TODO: Implement functionality in CustomersDAO.delete.
+    public int save(ArrayList<Customers> records) throws SQLException {
+        // TODO: Implement functionality in CustomersDAO.save.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -80,62 +87,56 @@ public class CustomersDAO extends ModelDAO<Customers> implements Editable {
     }
 
     @Override
-    public int delete(List<Customers> records) throws SQLException {
+    public int delete(ArrayList<Customers> records) throws SQLException {
         // TODO: Implement functionality in CustomersDAO.delete.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public boolean exists(Customers record) throws SQLException {
-        // TODO: Implement functionality in CustomersDAO.exists.
+    public void selectAll() throws SQLException {
+        // TODO: Implement functionality in CustomersDAO.selectAll.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Customers find(int searchColumn, String searchValue) throws SQLException {
+    public Customers find(String field, String value) throws SQLException {
         // TODO: Implement functionality in CustomersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Customers find(int searchColumn, int searchValue) throws SQLException {
+    public Customers find(String field, Integer value) throws SQLException {
         // TODO: Implement functionality in CustomersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Customers findIgnoreCase(int searchColumn, String searchValue) throws SQLException {
-        // TODO: Implement functionality in CustomersDAO.findIgnoreCase.
+    public Customers find(String field, Short value) throws SQLException {
+        // TODO: Implement functionality in CustomersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<Customers> findLike(int searchColumn, String searchValue) throws SQLException {
-        // TODO: Implement functionality in CustomersDAO.findLike.
+    public Customers find(String field, Long value) throws SQLException {
+        // TODO: Implement functionality in CustomersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Customers get() {
-        // TODO: Implement functionality in CustomersDAO.get.
+    public Customers find(String field, Float value) throws SQLException {
+        // TODO: Implement functionality in CustomersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Customers get(int id) throws SQLException {
-        // TODO: Implement functionality in CustomersDAO.get.
+    public Customers find(String field, Double value) throws SQLException {
+        // TODO: Implement functionality in CustomersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<Customers> getAll() throws SQLException {
-        // TODO: Implement functionality in CustomersDAO.getAll.
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public int getRecordCount() {
-        // TODO: Implement functionality in CustomersDAO.getRecordCount.
+    public Customers find(String field, Boolean value) throws SQLException {
+        // TODO: Implement functionality in CustomersDAO.find.
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

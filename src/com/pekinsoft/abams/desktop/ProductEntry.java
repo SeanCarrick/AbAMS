@@ -5,7 +5,6 @@
  */
 package com.pekinsoft.abams.desktop;
 
-import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -19,17 +18,18 @@ public class ProductEntry extends javax.swing.JInternalFrame {
 
     private final SingleFrameApplication app;
     private boolean saveAllowed;
-    
+
     /**
      * Creates new form ProductEntry
+     *
      * @param app
      */
     public ProductEntry(SingleFrameApplication app) {
         this.app = app;
         this.saveAllowed = false;
-        
+
         initComponents();
-        
+
         getRootPane().setDefaultButton(saveButton);
     }
 
@@ -381,9 +381,9 @@ public class ProductEntry extends javax.swing.JInternalFrame {
     @Action(enabledProperty = "saveAllowed")
     public void doSave() {
     }
-    
+
     public boolean isSaveAllowed() {
-        return !unitPriceField.getText().equals("0.00") 
+        return !unitPriceField.getText().equals("0.00")
                 && unitPriceField.getText().length() > 0
                 && unitPriceField.getText().contains(".")
                 && !productNameField.getText().equals("[Product Name]")
